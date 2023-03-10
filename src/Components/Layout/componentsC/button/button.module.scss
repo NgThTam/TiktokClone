@@ -1,0 +1,32 @@
+.warpper{
+    width: 100px;
+    height: 36px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    + .warpper{
+        margin-left: 12px;
+    }
+}
+
+.primary{
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 6px 8px;
+    &:hover{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),#FE2C55;
+    }
+}
+
+.solid{
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    background: rgba(255, 255, 255, 1);
+    color: var(--black);
+    &:hover{
+        background-color: rgba(22, 24, 35, .03);
+    }
+}
+
+.left-icon + .content, .content + .right-icon{
+    margin-left: 6px;
+}

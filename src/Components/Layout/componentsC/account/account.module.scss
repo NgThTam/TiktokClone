@@ -1,0 +1,27 @@
+.warpper{
+    display: flex;
+    padding: 9px 16px;
+    align-items: center;
+    .avatar{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .user{
+        margin-left: 12px;
+    }
+    .name-user{
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .name{
+        font-size: 14px;
+        color: rgba(22, 24, 35, 0.5);
+        font-weight: 400;
+    }
+    .tick{
+        color: rgb(32, 213, 236);
+        margin-left: 4px;
+    }
+}

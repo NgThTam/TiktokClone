@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+.content{
+    width: 692px;
+    background-color: aquamarine;
+}
+.container-content{
+    display: flex;
+    width: 1150px;
+    justify-content: space-between;
+}
