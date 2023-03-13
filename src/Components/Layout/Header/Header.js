@@ -6,11 +6,13 @@ import {
 	faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react/headless";
+import { Link } from "react-router-dom";
 import style from "./header.module.scss";
 import Popper from "../componentsC/poper/popper";
 import Account from "../componentsC/account/account";
 import Button from "../componentsC/button/button";
 import Image from "../componentsC/iconmini/imagelogo";
+import Menu from "./menu/menu";
 // import { useEffect } from "react";
 
 const cx = classNames.bind(style);
@@ -23,12 +25,14 @@ function Header() {
 		<div className={cx("warpper")}>
 			<header className={cx("header")}>
 				<div className={cx("logo-container")}>
-					<img
-						width={118}
-						height={35}
-						src='https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/TikTok_logo.svg/1200px-TikTok_logo.svg.png'
-						alt='tiktok'
-					></img>
+					<Link to={"/"}>
+						<img
+							width={118}
+							height={35}
+							src='https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/TikTok_logo.svg/1200px-TikTok_logo.svg.png'
+							alt='tiktok'
+						></img>
+					</Link>
 				</div>
 				<Tippy
 					// visible={true}
@@ -66,6 +70,7 @@ function Header() {
 					</Button>
 					<Button primary>Đăng nhập</Button>
 					<Image />
+					<Menu />
 				</div>
 			</header>
 		</div>

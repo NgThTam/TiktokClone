@@ -10,16 +10,22 @@ function Button({
 	primary = false,
 	solid = false,
 	large = false,
+	className,
+	classIcon,
 	leftIcon,
 	rightIcon,
 	children,
 	onClick,
+	onBack,
 }) {
 	let NameTag = "button";
 	const props = {
 		to,
 		href,
 		onClick,
+	};
+	const propsIcon = {
+		onClick: onBack,
 	};
 
 	if (to) {
@@ -34,10 +40,16 @@ function Button({
 	};
 
 	return (
-		<NameTag className={cx("warpper", classC)} {...props}>
-			{leftIcon && <span className={cx("left-icon")}>{leftIcon}</span>}
+		<NameTag className={cx("warpper", className, classC)} {...props}>
+			{leftIcon && (
+				<span className={cx("left-icon", classIcon)} {...propsIcon}>
+					{leftIcon}
+				</span>
+			)}
 			<span className={cx("content")}>{children}</span>
-			{rightIcon && <span className={cx("right-icon")}>{rightIcon}</span>}
+			{rightIcon && (
+				<span className={cx("right-icon", classIcon)}>{rightIcon}</span>
+			)}
 		</NameTag>
 	);
 }

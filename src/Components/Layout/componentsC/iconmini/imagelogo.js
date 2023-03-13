@@ -1,18 +1,14 @@
-import Tippy from "@tippyjs/react/headless";
 import classNames from "classnames/bind";
 import styles from "./imagelogo.module.scss";
+import TippyDefault from "../tippydefault/tippydefault";
 
 const cx = classNames.bind(styles);
 
 const Image = () => {
+	const content = "Tạo hiệu ứng";
+
 	return (
-		<Tippy
-			visible
-			interactive={true}
-			render={() => {
-				return <div className={cx("tippy-icon")}>Tạo hiệu ứng</div>;
-			}}
-		>
+		<TippyDefault content={content} interactive>
 			<div className={cx("container")}>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -83,7 +79,7 @@ const Image = () => {
 					</defs>
 				</svg>
 			</div>
-		</Tippy>
+		</TippyDefault>
 	);
 };
 
