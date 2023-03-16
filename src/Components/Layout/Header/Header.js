@@ -1,26 +1,38 @@
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faMagnifyingGlass,
-	faCircleXmark,
-	faPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import Tippy from "@tippyjs/react/headless";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
 import { Link } from "react-router-dom";
+import { useContext, useMemo } from "react";
+import { loginContext } from "../../Userlogin/login";
 import style from "./header.module.scss";
-import Popper from "../componentsC/poper/popper";
-import Account from "../componentsC/account/account";
 import Button from "../componentsC/button/button";
 import Image from "../componentsC/iconmini/imagelogo";
 import Menu from "./menu/menu";
-// import { useEffect } from "react";
+import Search from "../componentsC/boxsearch/search";
+// import Logout from "./logout/logout";
+import { useEffect } from "react";
 
 const cx = classNames.bind(style);
 
 function Header() {
-	// useEffect(() => {
-	// 	console.log(typeof Tippy);
-	// });
+	const [isLogin, setLogin] = useContext(loginContext);
+	const { handleLogin } = useMemo(() => {
+		const handleLogin = () => {
+			setLogin((prev) => {
+				return { ...prev, id: "oke" };
+			});
+		};
+		const handleLogout = () => {
+			setLogin((prev) => {
+				return { ...prev, id: "" };
+			});
+		};
+		return { handleLogin, handleLogout };
+	}, [setLogin]);
+	useEffect(() => {
+		// console.log(isLogin);
+	}, [isLogin]);
 	return (
 		<div className={cx("warpper")}>
 			<header className={cx("header")}>
@@ -34,41 +46,16 @@ function Header() {
 						></img>
 					</Link>
 				</div>
-				<Tippy
-					// visible={true}
-					interactive={true}
-					render={(attrs) => (
-						<div className={cx("warpper-popper")} tabIndex='-1' {...attrs}>
-							<Popper>
-								<div className={cx("title-account-search")}>Tài khoản</div>
-								<div className={cx("list-account-search")}>
-									<Account />
-									<Account />
-								</div>
-							</Popper>
-						</div>
-					)}
-				>
-					<div className={cx("container-search")}>
-						<div className={cx("form-search")}>
-							<input
-								className={cx("input-search")}
-								placeholder='Tìm kiếm tài khoản và video'
-							/>
-							<button className={cx("clear")}>
-								<FontAwesomeIcon icon={faCircleXmark} />
-							</button>
-							<button className={cx("search-btn")}>
-								<FontAwesomeIcon icon={faMagnifyingGlass} />
-							</button>
-						</div>
-					</div>
-				</Tippy>
+				<Search />
 				<div className={cx("login-container")}>
 					<Button solid leftIcon={<FontAwesomeIcon icon={faPlus} />}>
 						Tải lên
 					</Button>
-					<Button primary>Đăng nhập</Button>
+					{!!isLogin.id === false && (
+						<Button primary onClick={handleLogin}>
+							Đăng nhập
+						</Button>
+					)}
 					<Image />
 					<Menu />
 				</div>

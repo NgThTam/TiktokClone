@@ -9,3 +9,15 @@
     width: 224px;
     min-height: 186px;
 }
+.warpper-menu-login{
+    margin-top: 0px;
+}
+.warpper-avatar{
+    margin-left: 10px;
+    img{
+        width: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        object-fit: cover;
+    }
+}

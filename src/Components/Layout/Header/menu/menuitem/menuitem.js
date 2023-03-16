@@ -12,6 +12,11 @@ function MenuItem({ children, reset, items = [] }) {
 	const [checkedd, setChecked] = useState(false);
 	const [rdata, setdata] = useState([{ data: items }]);
 	const dataItems = rdata[rdata.length - 1];
+	reset.current = {
+		resetTippy() {
+			setdata((prev) => prev.slice(0, 1));
+		},
+	};
 	const handleChange = (e) => {
 		setChecked(e.target.checked);
 	};

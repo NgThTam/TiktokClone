@@ -8,6 +8,8 @@ import {
 import Tippy from "@tippyjs/react/headless";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
+import { useRef, useContext, useEffect } from "react";
+import { loginContext } from "../../../Userlogin/login";
 import styles from "./menu.module.scss";
 import Popper from "../../componentsC/poper/popper";
 import MenuItem from "./menuitem/menuitem";
@@ -51,22 +53,43 @@ const dataMenu = [
 ];
 
 function Menu() {
+	const resetT = useRef();
+	const [isLogin] = useContext(loginContext);
+
+	useEffect(() => {
+		console.log(isLogin);
+	}, [isLogin]);
+
 	return (
 		<Tippy
 			// visible
+			onHide={() => {
+				resetT.current.resetTippy();
+			}}
+			delay={[null, 200]}
 			interactive={true}
 			placement='bottom-end'
 			render={(attrs) => (
-				<div className={cx("warpper-menu")} tabIndex='-1' {...attrs}>
+				<div
+					className={cx("warpper-menu", !!isLogin.id && "warpper-menu-login")}
+					tabIndex='-1'
+					{...attrs}
+				>
 					<Popper>
-						<MenuItem items={dataMenu} />
+						<MenuItem reset={resetT} items={dataMenu} />
 					</Popper>
 				</div>
 			)}
 		>
-			<div className={cx("warpper")}>
-				<FontAwesomeIcon icon={faEllipsisVertical} />
-			</div>
+			{!!isLogin.id ? (
+				<div className={cx("warpper-avatar")}>
+					<img src={isLogin.avatar} alt='avatar' />
+				</div>
+			) : (
+				<div className={cx("warpper")}>
+					<FontAwesomeIcon icon={faEllipsisVertical} />
+				</div>
+			)}
 		</Tippy>
 	);
 }
