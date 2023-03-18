@@ -1,7 +1,15 @@
+a{
+    text-decoration: none;
+    color: var(--black);
+}
 .warpper{
     display: flex;
     padding: 9px 16px;
     align-items: center;
+    &:hover{
+        background-color: rgb(22 24 35 / 3%);
+        cursor: pointer;
+    }
     .avatar{
         width: 40px;
         height: 40px;

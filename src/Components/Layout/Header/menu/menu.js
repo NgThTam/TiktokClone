@@ -57,7 +57,7 @@ function Menu() {
 	const [isLogin] = useContext(loginContext);
 
 	useEffect(() => {
-		console.log(isLogin);
+		// console.log(isLogin);
 	}, [isLogin]);
 
 	return (

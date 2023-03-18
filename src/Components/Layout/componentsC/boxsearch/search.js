@@ -1,6 +1,7 @@
 import {
 	faMagnifyingGlass,
 	faCircleXmark,
+	faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,14 +12,18 @@ import { useState, useEffect, useRef } from "react";
 import Popper from "../poper/popper";
 import Account from "../account/account";
 import style from "./search.module.scss";
+import useCusstate from "./useCusstate/useCusstate";
 
 const cx = classNames.bind(style);
 
 function Search() {
-	// const [listSearch, setListSearch] = useState([]);
+	const [listSearch, setListSearch] = useState([]);
 	const [valueInput, setValueInput] = useState("");
 	const [show, setShow] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const inputRef = useRef();
+
+	const valueInputTimeout = useCusstate(valueInput, 500);
 
 	const handleClear = () => {
 		setValueInput("");
@@ -26,12 +31,26 @@ function Search() {
 	};
 
 	useEffect(() => {
-		console.log("asd");
-	}, []);
+		if (!valueInputTimeout.trim()) {
+			return;
+		}
+		setLoading(true);
+		fetch(
+			`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
+				valueInputTimeout
+			)}&type=less`
+		)
+			.then((res) => res.json())
+			.then((data) => {
+				let dtSearch = data.data;
+				setListSearch(dtSearch);
+				setLoading(false);
+			});
+	}, [valueInputTimeout]);
 
 	return (
 		<Tippy
-			visible={valueInput && show}
+			visible={valueInput && show && listSearch.length > 0}
 			interactive={true}
 			onClickOutside={() => {
 				setShow(false);
@@ -41,8 +60,9 @@ function Search() {
 					<Popper>
 						<div className={cx("title-account-search")}>Tài khoản</div>
 						<div className={cx("list-account-search")}>
-							<Account />
-							<Account />
+							{listSearch.map((ac) => (
+								<Account key={ac.id} data={ac} />
+							))}
 						</div>
 					</Popper>
 				</div>
@@ -62,9 +82,14 @@ function Search() {
 							setShow(true);
 						}}
 					/>
-					{valueInput && (
+					{!!valueInput && !loading && (
 						<button className={cx("clear")} onClick={handleClear}>
 							<FontAwesomeIcon icon={faCircleXmark} />
+						</button>
+					)}
+					{loading && (
+						<button className={cx("load")}>
+							<FontAwesomeIcon icon={faSpinner} />
 						</button>
 					)}
 					<button className={cx("search-btn")}>

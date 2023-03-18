@@ -1,26 +1,31 @@
+import { useEffect } from "react";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
+import { Link } from "react-router-dom";
 import styles from "./account.module.scss";
+import CusImage from "../cusimage/cusimage";
 const cx = classNames.bind(styles);
-function Account() {
+function Account({ data }) {
+	useEffect(() => {
+		// console.log(data);
+	});
+
 	return (
-		<div className={cx("warpper")}>
-			<img
-				className={cx("avatar")}
-				src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/f0f57f45f6caadfe0d721b0c5e232e1c~c5_100x100.jpeg?x-expires=1678359600&x-signature=GHovlFGBACYvd%2BEHYtSHkKzNNdA%3D'
-				alt='avatar'
-			/>
-			<div className={cx("user")}>
-				<h4 className={cx("name-user")}>
-					nthanhtam2303
-					<span className={cx("tick")}>
-						<FontAwesomeIcon icon={faCheckCircle} />
-					</span>
-				</h4>
-				<p className={cx("name")}>Nguyen Thanh Tam</p>
+		<Link to={`/following/@${data.nickname}`}>
+			<div className={cx("warpper")}>
+				<CusImage className={cx("avatar")} src={data.avatar} />
+				<div className={cx("user")}>
+					<h4 className={cx("name-user")}>
+						{data.nickname}
+						<span className={cx("tick")}>
+							{data.tick && <FontAwesomeIcon icon={faCheckCircle} />}
+						</span>
+					</h4>
+					<p className={cx("name")}>{data.full_name}</p>
+				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }
 export default Account;
