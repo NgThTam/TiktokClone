@@ -2,16 +2,21 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./menuitem.module.scss";
 import Button from "../../../componentsC/button/button";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 
-function MenuItem({ children, reset, items = [] }) {
+function MenuItem({ children, reset, items = [], logOut }) {
 	const inpRef = useRef();
 	const [checkedd, setChecked] = useState(false);
 	const [rdata, setdata] = useState([{ data: items }]);
+	useEffect(() => {
+		setdata([{ data: items }]);
+		// eslint-disable-next-line
+	}, [items]);
 	const dataItems = rdata[rdata.length - 1];
+
 	reset.current = {
 		resetTippy() {
 			setdata((prev) => prev.slice(0, 1));
@@ -46,6 +51,9 @@ function MenuItem({ children, reset, items = [] }) {
 	const handleOnback = () => {
 		setdata((prev) => prev.slice(0, prev.length - 1));
 	};
+	// const handleLogout = () => {
+	// 	console.log("oke");
+	// };
 
 	return (
 		<div className={cx("warpper-menuitem", setColor())}>
@@ -59,24 +67,33 @@ function MenuItem({ children, reset, items = [] }) {
 					{dataItems.title}
 				</Button>
 			)}
-			{dataItems.data.map((item, index) => {
-				const ckeckToggle = !!item.toggle;
-				return (
-					<Button
-						to={item.to}
-						key={index}
-						leftIcon={item.icon}
-						className={cx("btn-menu-item", setColor())}
-						classIcon={cx("icon-menu-item")}
-						onClick={() => {
-							item.children && handleLanguage(item.children);
-						}}
-					>
-						{ckeckToggle && checkedd ? item.toggle.ttitle : item.title}
-						{ckeckToggle && toggleOF()}
-					</Button>
-				);
-			})}
+			<div className={cx("overMenulv2")}>
+				{dataItems.data.map((item, index) => {
+					const ckeckToggle = !!item.toggle;
+					const checkLogout =
+						index === dataItems.data.length - 1 &&
+						dataItems.data.length > 4 &&
+						rdata.length <= 1
+							? "bodertop"
+							: "";
+					return (
+						<Button
+							to={item.to}
+							key={index}
+							leftIcon={item.icon}
+							className={cx("btn-menu-item", setColor(), checkLogout)}
+							classIcon={cx("icon-menu-item")}
+							onClick={() => {
+								item.children && handleLanguage(item.children);
+								checkLogout && logOut();
+							}}
+						>
+							{ckeckToggle && checkedd ? item.toggle.ttitle : item.title}
+							{ckeckToggle && toggleOF()}
+						</Button>
+					);
+				})}
+			</div>
 		</div>
 	);
 }

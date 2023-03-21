@@ -40,6 +40,15 @@
         align-items: center;
         justify-content: flex-end;
     }
+    .overMenulv2{
+        display: flex;
+        flex-direction: column;
+        overflow: overlay;
+        max-height: 350px;
+    }
+    .bodertop{
+        border-top: 1px solid rgba(22, 24, 35, 0.12);
+    }
 }
 .btn-menu-item{
     &:hover{

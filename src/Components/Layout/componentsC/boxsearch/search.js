@@ -49,55 +49,61 @@ function Search() {
 	}, [valueInputTimeout]);
 
 	return (
-		<Tippy
-			visible={valueInput && show && listSearch.length > 0}
-			interactive={true}
-			onClickOutside={() => {
-				setShow(false);
-			}}
-			render={(attrs) => (
-				<div className={cx("warpper-popper")} tabIndex='-1' {...attrs}>
-					<Popper>
-						<div className={cx("title-account-search")}>Tài khoản</div>
-						<div className={cx("list-account-search")}>
-							{listSearch.map((ac) => (
-								<Account key={ac.id} data={ac} />
-							))}
-						</div>
-					</Popper>
-				</div>
-			)}
-		>
-			<div className={cx("container-search")}>
-				<div className={cx("form-search")}>
-					<input
-						ref={inputRef}
-						onChange={(e) => {
-							setValueInput(e.target.value);
-						}}
-						className={cx("input-search")}
-						placeholder='Tìm kiếm tài khoản và video'
-						value={valueInput}
-						onFocus={() => {
-							setShow(true);
-						}}
-					/>
-					{!!valueInput && !loading && (
-						<button className={cx("clear")} onClick={handleClear}>
-							<FontAwesomeIcon icon={faCircleXmark} />
+		//Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
+		<div>
+			<Tippy
+				visible={valueInput && show && listSearch.length > 0}
+				interactive={true}
+				onClickOutside={() => {
+					setShow(false);
+				}}
+				render={(attrs) => (
+					<div className={cx("warpper-popper")} tabIndex='-1' {...attrs}>
+						<Popper>
+							<div className={cx("title-account-search")}>Tài khoản</div>
+							<div className={cx("list-account-search")}>
+								{listSearch.map((ac) => (
+									<Account key={ac.id} data={ac} />
+								))}
+							</div>
+						</Popper>
+					</div>
+				)}
+			>
+				<div className={cx("container-search")}>
+					<div className={cx("form-search")}>
+						<input
+							ref={inputRef}
+							onChange={(e) => {
+								setValueInput(e.target.value);
+							}}
+							className={cx("input-search")}
+							placeholder='Tìm kiếm tài khoản và video'
+							value={valueInput}
+							onFocus={() => {
+								setShow(true);
+							}}
+						/>
+						{!!valueInput && !loading && (
+							<button className={cx("clear")} onClick={handleClear}>
+								<FontAwesomeIcon icon={faCircleXmark} />
+							</button>
+						)}
+						{loading && (
+							<button className={cx("load")}>
+								<FontAwesomeIcon icon={faSpinner} />
+							</button>
+						)}
+						<button
+							className={cx("search-btn")}
+							onMouseDown={(e) => e.preventDefault()}
+						>
+							<FontAwesomeIcon icon={faMagnifyingGlass} />
 						</button>
-					)}
-					{loading && (
-						<button className={cx("load")}>
-							<FontAwesomeIcon icon={faSpinner} />
-						</button>
-					)}
-					<button className={cx("search-btn")}>
-						<FontAwesomeIcon icon={faMagnifyingGlass} />
-					</button>
+					</div>
 				</div>
-			</div>
-		</Tippy>
+			</Tippy>
+		</div>
 	);
 }
 
