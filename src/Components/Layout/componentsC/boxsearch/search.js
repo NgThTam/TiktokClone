@@ -6,6 +6,7 @@ import {
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tippy from "@tippyjs/react/headless";
+import axios from "axios";
 
 import { useState, useEffect, useRef } from "react";
 
@@ -35,17 +36,20 @@ function Search() {
 			return;
 		}
 		setLoading(true);
-		fetch(
-			`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-				valueInputTimeout
-			)}&type=less`
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				let dtSearch = data.data;
-				setListSearch(dtSearch);
-				setLoading(false);
-			});
+		const fetchAPI = async () => {
+			const data = await axios.get(
+				"https://tiktok.fullstack.edu.vn/api/users/search",
+				{
+					params: {
+						q: valueInputTimeout,
+						type: "less",
+					},
+				}
+			);
+			setListSearch(data.data.data);
+			setLoading(false);
+		};
+		fetchAPI();
 	}, [valueInputTimeout]);
 
 	return (

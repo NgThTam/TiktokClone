@@ -11,9 +11,11 @@ const TippyDefault = ({ content, visible, interactive = false, children }) => {
 		interactive,
 	};
 	return (
-		<Tippy visible={visible} {...attrTippy} content={content}>
-			{children}
-		</Tippy>
+		<div>
+			<Tippy visible={visible} {...attrTippy} content={content}>
+				{children}
+			</Tippy>
+		</div>
 	);
 };
 

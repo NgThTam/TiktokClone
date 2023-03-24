@@ -1,0 +1,8 @@
+.warpper-menu{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    .menu-active{
+        color: var(--primary);
+    }
+}

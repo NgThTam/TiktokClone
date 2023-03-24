@@ -159,36 +159,39 @@ function Menu({ props, logOut }) {
 	// }, [data]);
 
 	return (
-		<Tippy
-			// visible={true}
-			onHide={() => {
-				resetT.current.resetTippy();
-			}}
-			delay={[null, 200]}
-			interactive={true}
-			placement='bottom-end'
-			render={(attrs) => (
-				<div
-					className={cx("warpper-menu", !!isLogin.id && "warpper-menu-login")}
-					tabIndex='-1'
-					{...attrs}
-				>
-					<Popper>
-						<MenuItem reset={resetT} items={data} logOut={logOut} />
-					</Popper>
-				</div>
-			)}
-		>
-			{!!isLogin.id ? (
-				<div className={cx("warpper-avatar")}>
-					<CusImage src={isLogin.avatar} alt='avatar' />
-				</div>
-			) : (
-				<div className={cx("warpper")}>
-					<FontAwesomeIcon icon={faEllipsisVertical} />
-				</div>
-			)}
-		</Tippy>
+		//Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
+		<div>
+			<Tippy
+				// visible={true}
+				onHide={() => {
+					resetT.current.resetTippy();
+				}}
+				delay={[null, 200]}
+				interactive={true}
+				placement='bottom-end'
+				render={(attrs) => (
+					<div
+						className={cx("warpper-menu", !!isLogin.id && "warpper-menu-login")}
+						tabIndex='-1'
+						{...attrs}
+					>
+						<Popper>
+							<MenuItem reset={resetT} items={data} logOut={logOut} />
+						</Popper>
+					</div>
+				)}
+			>
+				{!!isLogin.id ? (
+					<div className={cx("warpper-avatar")}>
+						<CusImage src={isLogin.avatar} alt='avatar' />
+					</div>
+				) : (
+					<div className={cx("warpper")}>
+						<FontAwesomeIcon icon={faEllipsisVertical} />
+					</div>
+				)}
+			</Tippy>
+		</div>
 	);
 }
 export default Menu;
