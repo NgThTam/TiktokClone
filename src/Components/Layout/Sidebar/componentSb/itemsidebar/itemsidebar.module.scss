@@ -1,0 +1,86 @@
+.warpper-item{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 8px 8px 0px;
+    transition: background-color 200ms ease-in-out 0s;
+    &:hover{
+        background-color: #16182308;
+        border-radius: 4px;
+    }
+    .avatar-item{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .info-item{
+        margin-left: 12px;
+    }
+    .nickname-item{
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 22px;
+        margin-top: -2px;
+    }
+    .check-item{
+        color: #20D5EC;
+        margin-left: 4px;
+    }
+    .name-item{
+        color: #161823bf;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+//tippy
+.warpper-tip{
+    width: 320px;
+}
+.body-tip{
+    padding: 20px;
+    .bnt-follow{
+        width: 106px;
+        height: 34px;
+        font-weight: 400;
+    }
+    .header-tippy-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+    .user-nickname{
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .check-item{
+        color: #20D5EC;
+        margin-left: 4px;
+    }
+    .user-name{
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .user-view{
+        margin-top: 8px;
+    }
+    .value-view{
+        font-weight: 700;
+        margin-right: 6px;
+        font-size: 17px;
+    }
+    .name-view{
+        font-size: 17px;
+        margin-right: 12px;
+        color: #161823bf;
+    }
+}
+.avatar-tippy-item{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
