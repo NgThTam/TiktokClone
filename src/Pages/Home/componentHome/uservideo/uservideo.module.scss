@@ -1,0 +1,59 @@
+.warrper-video{
+    margin-left: 12px;
+}
+.inf-user{
+    display: flex;
+    align-items: center;
+    h3{
+        margin-right: 4px;
+    }
+    h4{
+        font-size: 14px;
+        font-weight: 400;
+        color: #161823;
+    }
+}
+.icon-check{
+    width: 14px;
+    height: 14px;
+    color: #20d5ec;
+    margin-left: 4px;
+}
+.caption-tag{
+    .caption{
+        color: #161823;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .tag-a{
+        font-weight: 600;
+    }
+    .tag-a:hover{
+        text-decoration: underline;
+    }
+}
+.music{
+    margin: 4px 0px 12px 0px;
+    .link-music{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        margin-left: 4px;
+    }
+    .link-music:hover{
+        text-decoration: underline;
+    }
+}
+//video
+.video-detail{
+    display: flex;
+    align-items: flex-end;
+}
+.video-view{
+    
+    .video{
+        width: 265px;
+        height: 473px;
+        border-radius: 8px;
+    }
+}

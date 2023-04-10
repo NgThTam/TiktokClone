@@ -1,8 +1,22 @@
 .warpper{
     width: 356px;
-    min-height: 1000px;
+    // min-height: 1000px;
     // background-color: bisque;
-    &:hover{
-        color: red;
-    }
+    overflow-y: auto;
+    height: 100%;
+    position: fixed;
+    padding-right: 4px;
+}
+//scrollbar
+.warpper::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #00000000;
+    min-height: 50px;
+}
+.warpper::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: #00000000;
+}
+.warpper:hover::-webkit-scrollbar-thumb {
+    background-color: #1618230f;
 }

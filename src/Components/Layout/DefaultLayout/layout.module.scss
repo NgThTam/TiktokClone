@@ -4,11 +4,16 @@
 }
 .content{
     width: 692px;
-    background-color: aquamarine;
+    // background-color: aquamarine;
+    position: absolute;
+    right: 0;
+    min-height: 1000px;
+    z-index: -1;
 }
 .container-content{
     display: flex;
     width: 1150px;
     justify-content: space-between;
     margin-top: 60px;
+    position: relative;
 }

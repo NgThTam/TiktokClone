@@ -1,0 +1,25 @@
+.warpper-footer{
+    margin-bottom: 9rem;
+    padding-top: 16px;
+    border-top: 1px solid #1618231f;
+    padding-right: 10px;
+    div{
+        margin-bottom: 8px;
+        a{
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 17px;
+            color: #16182380;
+            margin-right: 6px;
+            margin-top: 5px;
+            &:hover{
+                text-decoration: revert;
+            }
+        }
+    }
+    span{
+        font-weight: 600;
+        font-size: 13px;
+        color: #16182380;
+    }
+}

@@ -1,8 +1,10 @@
 import classNames from "classnames/bind";
 import { useContext } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 import Acsidebar from "../acsidebar/acsidebar";
 import style from "./bodysidebar.module.scss";
+import Button from "../../../componentsC/button/button";
 import { loginContext } from "../../../../Userlogin/login";
 
 const cx = classNames.bind(style);
@@ -156,14 +158,33 @@ const dataFollow = [
 ];
 
 function Bodysidebar() {
-	const [isLogin] = useContext(loginContext);
+	const [isLogin, setLogin] = useContext(loginContext);
+	const handleLogin = () => {
+		setLogin((prev) => {
+			return { ...prev, id: "oke" };
+		});
+		toast.success("Logged in successfully");
+	};
 
 	return (
 		<div className={cx("warpper-body")}>
+			{!!isLogin.id === false && (
+				<div className={cx("div-login")}>
+					<p>Đăng nhập để follow các tác giả, thích video và xem bình luận.</p>
+					<Button primary className={cx("bnt-div-login")} onClick={handleLogin}>
+						Đăng nhập
+					</Button>
+				</div>
+			)}
 			<Acsidebar title='Tài khoản được đề xuất' datas={dataFakes} />
 			{isLogin.id && (
 				<Acsidebar title='Các tài khoản đang follow' datas={dataFollow} />
 			)}
+			<ToastContainer
+				autoClose={1000}
+				pauseOnHover={false}
+				position='top-center'
+			/>
 		</div>
 	);
 }

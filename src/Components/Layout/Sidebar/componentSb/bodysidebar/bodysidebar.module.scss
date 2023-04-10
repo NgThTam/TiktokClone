@@ -1,0 +1,20 @@
+.div-login{
+    padding: 20px 0px 24px 0px;
+    border-top: 1px solid #1618231f;
+    p{
+        color: #16182380;
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .bnt-div-login{
+        width: 100%;
+        background-color: #ffffff;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        margin-top: 20px;
+        height: 48px;
+        font-size: 18px;
+        line-height: 25px;
+        font-weight: 600;
+    }
+}
